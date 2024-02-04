@@ -1,34 +1,25 @@
-import java.io.*;
-import java.util.Arrays;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main {
-    // baekjoon # 10818
-    // input ex)
-    // 5
-    // 20 10 35 30 7
-    // ----------
-    // output ex)
-    // 7 35
-    static int min, max;
+    static int maxNum = -1_000_001; // 최댓값 갱신용
+    static int minNum = 1_000_001;
+    static int N;
+    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
     public static void main(String[] args) throws IOException {
-        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        StringTokenizer st;
+        N = Integer.parseInt(br.readLine());
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
-        int size = Integer.parseInt(bf.readLine());
-        st = new StringTokenizer(bf.readLine());
-        int[] input = new int[size];
-
-        for(int i=0; i<size; i++){
-            input[i] = Integer.parseInt(st.nextToken());
+				// 배열로 만들어 sort를 하거나 배열을 돌면서 찾기보다 토큰상태에서 바로!
+        for (int i = 0; i < N; i++) {
+            int num = Integer.parseInt(st.nextToken());
+            maxNum = Math.max(maxNum, num);
+            minNum = minNum > num ? num : minNum; // Math.min을 권장합니다.
         }
-
-        // 정렬
-        Arrays.sort(input);
-        String answer = new String(input[0]+ " " + input[size-1]);
-        bw.write(answer);
-        bw.flush();
-        bw.close();
+        System.out.print(minNum + " ");
+        System.out.println(maxNum);
     }
 }
