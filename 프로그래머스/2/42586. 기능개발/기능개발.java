@@ -41,7 +41,6 @@ class Solution {
             answer[i] = deployList.get(i);
         }
         
-        
         return answer;
     }
 }
